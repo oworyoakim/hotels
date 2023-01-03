@@ -13,12 +13,12 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-amazon-services-bom:${quarkusPlatformVersion}")
     //quarkus libs
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
     implementation 'io.quarkus:quarkus-flyway'
     implementation 'org.flywaydb:flyway-mysql'
-    implementation 'io.quarkus:quarkus-resteasy-reactive'
-    implementation 'io.quarkus:quarkus-smallrye-jwt'
-    implementation 'io.quarkiverse.amazonservices:quarkus-amazon-s3'
     implementation 'io.quarkus:quarkus-jdbc-mysql'
+    implementation 'io.quarkiverse.amazonservices:quarkus-amazon-s3'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
     implementation 'io.quarkus:quarkus-smallrye-jwt-build'
     implementation 'io.quarkus:quarkus-arc'
     // logging

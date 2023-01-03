@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 public class User {
     Long id;
 
+    UserType type;
+
     String name;
 
     String email;
@@ -17,6 +19,10 @@ public class User {
     String password;
 
     Long clientId;
+
+    Boolean active;
+
+    String token;
 
     LocalDateTime createdAt;
 
