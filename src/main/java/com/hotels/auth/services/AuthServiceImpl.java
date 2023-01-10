@@ -1,6 +1,7 @@
 package com.hotels.auth.services;
 
 import com.hotels.auth.models.AuthResponse;
+import com.hotels.auth.models.ProfileResponse;
 import com.hotels.auth.requests.LoginRequest;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.users.models.User;
@@ -107,5 +108,27 @@ public class AuthServiceImpl implements AuthService {
 
         Optional<User> optionalUser = userService.find(userId);
         return optionalUser.isPresent() && token.getRawToken().equals(optionalUser.get().getToken());
+    }
+
+    @Override
+    public ProfileResponse loggedInUser(JsonWebToken token) {
+        Long userId = Long.valueOf(token.getClaim("userId").toString());
+        Optional<User> optionalUser = userService.find(userId);
+
+        if(optionalUser.isEmpty()) {
+            return null;
+        }
+
+        User user = optionalUser.get();
+        return ProfileResponse.builder()
+                .id(user.getId())
+                .type(user.getType())
+                .name(user.getName())
+                .email(user.getEmail())
+                .clientId(user.getClientId())
+                .active(user.getActive())
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
+                .build();
     }
 }
