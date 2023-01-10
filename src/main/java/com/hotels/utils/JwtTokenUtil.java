@@ -2,7 +2,6 @@ package com.hotels.utils;
 
 import com.hotels.users.models.User;
 import io.smallrye.jwt.build.Jwt;
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
@@ -10,7 +9,6 @@ import java.time.Instant;
 @Slf4j
 public class JwtTokenUtil {
     public static String generateToken(User user, Long duration, String issuer){
-        String secret = ConfigProvider.getConfig().getValue("com.hotels.jwt.secret", String.class);
         long currentTimeInSecs = Instant.now().getEpochSecond();
         long expiresAt = currentTimeInSecs + duration;
 
@@ -20,7 +18,7 @@ public class JwtTokenUtil {
                 .subject(user.getEmail())
                 .issuedAt(currentTimeInSecs)
                 .expiresAt(expiresAt)
-                .signWithSecret(secret);
+                .sign();
     }
 
     public static Long getUserId(JsonWebToken token) {

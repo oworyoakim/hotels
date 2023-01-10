@@ -31,7 +31,7 @@ public class LogoutController {
         Boolean loggedOut = authService.logout(token);
         if (!loggedOut) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new Object() {String message = "Could not verify token";})
+                    .entity(new Object() {public String message = "Could not verify token";})
                     .build();
         }
         return Response.status(Response.Status.OK).build();

@@ -86,18 +86,20 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Boolean logout(JsonWebToken token) {
-        Long userId = token.getClaim("userId");
+        Long userId = Long.valueOf(token.getClaim("userId").toString());
         Integer rowsCount = userService.updateToken(userId, null);
         return rowsCount == 1;
     }
 
     @Override
     public Boolean isAuthenticated(JsonWebToken token) {
-        Long userId = token.getClaim("userId");
+        var userIdClaim = token.getClaim("userId");
 
-        if (userId == null) {
+        if (userIdClaim == null) {
             return false;
         }
+
+        Long userId = Long.valueOf(userIdClaim.toString());
 
         if (Instant.now().isAfter(Instant.ofEpochSecond(token.getExpirationTime()))) {
             return false;
