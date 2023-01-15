@@ -1,4 +1,4 @@
 package com.hotels.properties.requests;
 
-public class UploadPropertyImageRequest {
+public class UploadPropertyPhotosRequest {
 }

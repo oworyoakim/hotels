@@ -7,14 +7,14 @@ import lombok.Value;
 
 @Builder(toBuilder = true)
 @Value
-public class Room {
+public class PropertyPhoto {
     Long id;
-    String name;
     Long propertyId;
-    String description;
-    Double nightlyRate;
-    Boolean published;
-    Integer bathrooms;
+    Integer width;
+    Integer height;
+    String previewUrl;
+    String mainUrl;
+    Boolean coverPhoto;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

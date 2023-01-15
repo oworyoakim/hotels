@@ -18,9 +18,8 @@ public class Client {
     String country;
     String city;
     String zip;
-    boolean active;
-
+    Boolean active;
+    String listingCurrency;
     LocalDateTime createdAt;
-
     LocalDateTime updatedAt;
 }

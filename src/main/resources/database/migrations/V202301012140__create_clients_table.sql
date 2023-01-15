@@ -9,7 +9,8 @@ CREATE TABLE clients (
     country varchar(255),
     city varchar(255),
     zip varchar(255),
-    active tinyint(1) default 0,
+    listingCurrency varchar(255),
+    active boolean default false,
     createdAt timestamp,
     updatedAt timestamp,
     PRIMARY KEY (id)

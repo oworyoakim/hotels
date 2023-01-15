@@ -9,22 +9,13 @@ import java.time.LocalDateTime;
 @Value
 public class User {
     Long id;
-
     UserType type;
-
     String name;
-
     String email;
-
     String password;
-
     Long clientId;
-
     Boolean active;
-
     String token;
-
     LocalDateTime createdAt;
-
     LocalDateTime updatedAt;
 }

@@ -7,14 +7,9 @@ import lombok.Value;
 
 @Builder(toBuilder = true)
 @Value
-public class Room {
+public class PropertyAmenity {
     Long id;
-    String name;
     Long propertyId;
-    String description;
-    Double nightlyRate;
-    Boolean published;
-    Integer bathrooms;
+    Long amenityId;
     LocalDateTime createdAt;
-    LocalDateTime updatedAt;
 }

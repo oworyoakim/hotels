@@ -5,7 +5,7 @@ CREATE TABLE users (
     name varchar(255) DEFAULT NULL,
     email varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL,
-    active tinyint(1) DEFAULT 0,
+    active boolean DEFAULT false,
     token varchar(1000) DEFAULT NULL,
     createdAt timestamp,
     updatedAt timestamp,

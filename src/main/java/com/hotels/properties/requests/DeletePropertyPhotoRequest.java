@@ -1,4 +1,4 @@
 package com.hotels.properties.requests;
 
-public class DeletePropertyImageRequest {
+public class DeletePropertyPhotoRequest {
 }

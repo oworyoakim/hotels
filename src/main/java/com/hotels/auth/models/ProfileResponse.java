@@ -10,18 +10,11 @@ import java.time.LocalDateTime;
 @Value
 public class ProfileResponse {
     Long id;
-
     UserType type;
-
     String name;
-
     String email;
-
     Long clientId;
-
     Boolean active;
-
     LocalDateTime createdAt;
-
     LocalDateTime updatedAt;
 }
