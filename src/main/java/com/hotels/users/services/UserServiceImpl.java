@@ -2,7 +2,7 @@ package com.hotels.users.services;
 
 import com.hotels.db.DatabaseConnection;
 import com.hotels.users.models.User;
-import com.hotels.users.models.UserType;
+import com.hotels.users.enumerations.UserType;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 

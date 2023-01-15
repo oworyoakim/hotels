@@ -16,6 +16,5 @@ public class RoomPhoto {
     String mainUrl;
     Boolean coverPhoto;
     LocalDateTime createdAt;
-    LocalDateTime updatedAt;
 
 }

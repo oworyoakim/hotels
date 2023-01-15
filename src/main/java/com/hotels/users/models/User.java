@@ -1,5 +1,6 @@
 package com.hotels.users.models;
 
+import com.hotels.users.enumerations.UserType;
 import lombok.Builder;
 import lombok.Value;
 

@@ -2,7 +2,7 @@ package com.hotels.account.services;
 
 import com.hotels.account.models.Client;
 import com.hotels.db.DatabaseConnection;
-import com.hotels.users.models.UserType;
+import com.hotels.users.enumerations.UserType;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import lombok.AllArgsConstructor;
 

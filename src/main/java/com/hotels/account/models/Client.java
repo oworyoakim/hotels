@@ -1,5 +1,6 @@
 package com.hotels.account.models;
 
+import com.hotels.account.enumerations.AccountType;
 import lombok.Builder;
 import lombok.Value;
 

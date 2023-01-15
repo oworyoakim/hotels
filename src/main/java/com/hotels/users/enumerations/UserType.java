@@ -1,12 +1,13 @@
-package com.hotels.account.models;
+package com.hotels.users.enumerations;
 
-public enum AccountType {
-    INDIVIDUAL("Individual"),
-    BUSINESS("Business");
+public enum UserType {
+
+    BUSINESS_OWNER("BusinessOwner"),
+    NORMAL_USER("User");
 
     private final String displayName;
 
-    AccountType(String displayName) {
+    UserType(String displayName) {
         this.displayName = displayName;
     }
 

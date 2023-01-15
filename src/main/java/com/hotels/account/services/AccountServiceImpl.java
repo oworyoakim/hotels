@@ -1,6 +1,6 @@
 package com.hotels.account.services;
 
-import com.hotels.account.models.AccountType;
+import com.hotels.account.enumerations.AccountType;
 import com.hotels.account.models.Client;
 import com.hotels.db.DatabaseConnection;
 import lombok.AllArgsConstructor;

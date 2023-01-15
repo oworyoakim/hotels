@@ -16,5 +16,4 @@ public class PropertyPhoto {
     String mainUrl;
     Boolean coverPhoto;
     LocalDateTime createdAt;
-    LocalDateTime updatedAt;
 }

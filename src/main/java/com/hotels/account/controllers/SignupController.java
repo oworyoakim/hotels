@@ -1,6 +1,6 @@
 package com.hotels.account.controllers;
 
-import com.hotels.account.models.AccountType;
+import com.hotels.account.enumerations.AccountType;
 import com.hotels.account.models.Client;
 import com.hotels.account.requests.SignupRequest;
 import com.hotels.account.services.SignupService;
