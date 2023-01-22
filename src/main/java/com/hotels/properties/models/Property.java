@@ -3,6 +3,7 @@ package com.hotels.properties.models;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.hotels.properties.enumerations.PropertyType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,7 +13,7 @@ public class Property {
     Long id;
     Long clientId;
     Long userId;
-    String propertyTypeId;
+    PropertyType propertyType;
     String listingCurrency;
     Boolean published;
     String address;
