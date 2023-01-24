@@ -13,8 +13,12 @@ public class Property {
     Long id;
     Long clientId;
     Long userId;
+    String name;
+    String description;
     PropertyType propertyType;
     String listingCurrency;
+    Double nightlyRate;
+    Integer bathrooms;
     Boolean published;
     String address;
     String country;
