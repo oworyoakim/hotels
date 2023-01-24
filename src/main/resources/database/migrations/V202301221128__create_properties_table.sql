@@ -7,7 +7,6 @@ CREATE TABLE properties
     propertyType    varchar(255),
     description     varchar(500)            DEFAULT NULL,
     nightlyRate     decimal(15, 2) NOT NULL,
-    bathrooms       int            NOT NULL DEFAULT 1,
     listingCurrency varchar(255)   NOT NULL,
     checkin         time           NOT NULL,
     checkout        time           NOT NULL,

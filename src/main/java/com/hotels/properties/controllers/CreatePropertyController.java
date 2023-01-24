@@ -1,6 +1,7 @@
 package com.hotels.properties.controllers;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
@@ -38,14 +39,13 @@ public class CreatePropertyController {
             .name(request.getName())
             .description(request.getDescription())
             .nightlyRate(request.getNightlyRate())
-            .bathrooms(request.getBathrooms())
             .listingCurrency(request.getListingCurrency())
             .country(request.getCountry())
             .city(request.getCity())
             .address(request.getAddress())
             .zip(request.getZip())
-            .checkin(request.getCheckin())
-            .checkout(request.getCheckout())
+            .checkin(LocalTime.parse(request.getCheckin()))
+            .checkout(LocalTime.parse(request.getCheckout()))
             .published(false)
             .clientId(loggedInUser.getClientId())
             .userId(loggedInUser.getId())

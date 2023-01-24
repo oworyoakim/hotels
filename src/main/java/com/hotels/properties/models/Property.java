@@ -17,7 +17,7 @@ public class Property {
     String description;
     PropertyType propertyType;
     String listingCurrency;
-    Double nightlyRate;
+    Integer nightlyRate;
     Integer bathrooms;
     Boolean published;
     String address;

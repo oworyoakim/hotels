@@ -58,9 +58,8 @@ public class PropertyServiceImpl implements PropertyService {
                         propertyType,
                         name,
                         description,
-                        nightlyRate,
-                        bathrooms,
                         listingCurrency,
+                        nightlyRate,
                         checkin,
                         checkout,
                         published,
@@ -78,7 +77,6 @@ public class PropertyServiceImpl implements PropertyService {
                         :description,
                         :listingCurrency,
                         :nightlyRate,
-                        :bathrooms,
                         :checkin,
                         :checkout,
                         :published,
@@ -96,7 +94,6 @@ public class PropertyServiceImpl implements PropertyService {
                 .bind("description", property.getDescription())
                 .bind("listingCurrency", property.getListingCurrency())
                 .bind("nightlyRate", property.getNightlyRate())
-                .bind("bathrooms", property.getBathrooms())
                 .bind("checkin", property.getCheckin())
                 .bind("checkout", property.getCheckout())
                 .bind("published", property.getPublished())
@@ -140,8 +137,7 @@ public class PropertyServiceImpl implements PropertyService {
             .name(rs.getString("name"))
             .description(rs.getString("description"))
             .listingCurrency(rs.getString("listingCurrency"))
-            .nightlyRate(rs.getDouble("nightlyRate"))
-            .bathrooms(rs.getInt("bathrooms"))
+            .nightlyRate(rs.getInt("nightlyRate"))
             .published(rs.getBoolean("published"))
             .checkin(rs.getTime("checkin").toLocalTime())
             .checkout(rs.getTime("checkout").toLocalTime())
