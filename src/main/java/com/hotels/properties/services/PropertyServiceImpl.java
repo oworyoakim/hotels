@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Property;
+import com.hotels.users.enumerations.UserType;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 
@@ -26,7 +27,6 @@ public class PropertyServiceImpl implements PropertyService {
             description,
             listingCurrency,
             nightlyRate,
-            bathrooms,
             checkin,
             checkout,
             published,
@@ -37,7 +37,7 @@ public class PropertyServiceImpl implements PropertyService {
             createdAt,
             updatedAt
         FROM
-            properties
+            properties p
         """;
 
     @Override
@@ -104,8 +104,8 @@ public class PropertyServiceImpl implements PropertyService {
                 .bind("createdAt", property.getCreatedAt())
                 .bind("updatedAt", property.getUpdatedAt())
                 .executeAndReturnGeneratedKeys("id")
-                .map((rs, ctx) -> rs.getLong("id"))
-                .first();
+                .mapTo(Long.class)
+                .one();
 
             return find(propertyId);
         });

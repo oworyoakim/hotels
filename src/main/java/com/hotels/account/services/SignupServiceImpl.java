@@ -3,6 +3,8 @@ package com.hotels.account.services;
 import com.hotels.account.models.Client;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.users.enumerations.UserType;
+import com.hotels.users.models.User;
+import com.hotels.users.services.UserService;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import lombok.AllArgsConstructor;
 
@@ -17,11 +19,12 @@ public class SignupServiceImpl implements SignupService {
     private final DatabaseConnection connection;
 
     private final AccountService accountService;
+    private final UserService userService;
 
     public Optional<Client> createAccount(Client client) {
         return connection.getConnection().withHandle(handle -> {
             // create the account
-            int rowCount = handle.createUpdate("""
+            Long clientId = handle.createUpdate("""
                     INSERT INTO clients (
                         accountType,
                         subdomain,
@@ -58,18 +61,13 @@ public class SignupServiceImpl implements SignupService {
                     .bind("zip", client.getZip())
                     .bind("createdAt", client.getCreatedAt())
                     .bind("updatedAt", client.getUpdatedAt())
-                    .execute();
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Long.class)
+                    .one();
 
-            if (rowCount == 0) {
+            if (clientId == null) {
                 return Optional.empty();
             }
-
-            Optional<Client> createdClient = accountService.findByEmailAddress(client.getEmail());
-
-            if (createdClient.isEmpty()) {
-                return createdClient;
-            }
-
 
             // generate the temporary password
             String password = generatePassword();
@@ -79,36 +77,28 @@ public class SignupServiceImpl implements SignupService {
 
 
             // create the super user
-            handle.createUpdate("""
-                    INSERT INTO users (
-                        type,
-                        email,
-                        clientId,
-                        password,
-                        createdAt,
-                        updatedAt
-                    ) VALUES (
-                        :type,
-                        :email,
-                        :clientId,
-                        :password,
-                        :createdAt,
-                        :updatedAt
-                    )
-                """).bind("type", UserType.BUSINESS_OWNER)
-                    .bind("email", client.getEmail())
-                    .bind("clientId", createdClient.get().getId())
-                    .bind("password", BcryptUtil.bcryptHash(password))
-                    .bind("createdAt", LocalDateTime.now())
-                    .bind("updatedAt", LocalDateTime.now())
-                    .execute();
+            User superUser = User.builder()
+                .clientId(clientId)
+                .type(UserType.BUSINESS_OWNER)
+                .email(client.getEmail())
+                .password(BcryptUtil.bcryptHash(password))
+                .active(true)
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
+
+            Optional<User> optionalUser = userService.create(superUser);
+
+            if (optionalUser.isEmpty()) {
+                return Optional.empty();
+            }
 
             // Send the signup email with the temporary password
 
 
 
             // done
-            return createdClient;
+            return accountService.find(clientId);
         });
     }
 

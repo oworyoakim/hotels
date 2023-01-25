@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.hotels.auth.models.ProfileResponse;
 import com.hotels.auth.services.AuthService;
+import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Property;
 import com.hotels.properties.requests.CreatePropertyRequest;
 import com.hotels.properties.services.PropertyService;
@@ -36,6 +37,7 @@ public class CreatePropertyController {
         ProfileResponse loggedInUser = authService.loggedInUser(token);
 
         Property property = Property.builder()
+            .propertyType(PropertyType.valueOf(request.getPropertyType()))
             .name(request.getName())
             .description(request.getDescription())
             .nightlyRate(request.getNightlyRate())

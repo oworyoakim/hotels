@@ -11,4 +11,6 @@ public interface UserService {
     Optional<User> findByEmailAddress(String email);
 
     Integer updateToken(Long id, String token);
+
+    Optional<User> create(User user);
 }

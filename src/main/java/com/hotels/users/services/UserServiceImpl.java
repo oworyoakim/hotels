@@ -3,6 +3,7 @@ package com.hotels.users.services;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.users.models.User;
 import com.hotels.users.enumerations.UserType;
+import io.quarkus.elytron.security.common.BcryptUtil;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 
@@ -68,5 +69,42 @@ public class UserServiceImpl implements UserService {
                 .bind("id", id)
                 .bind("updatedAt", LocalDateTime.now())
                 .execute());
+    }
+
+    @Override
+    public Optional<User> create(User user) {
+        return connection.getConnection().withHandle(handle -> {
+            Long userId = handle.createUpdate("""
+                    INSERT INTO users (
+                        type,
+                        email,
+                        clientId,
+                        password,
+                        active,
+                        createdAt,
+                        updatedAt
+                    ) VALUES (
+                        :type,
+                        :email,
+                        :clientId,
+                        :password,
+                        :active,
+                        :createdAt,
+                        :updatedAt
+                    )
+                """)
+                .bind("type", user.getType())
+                .bind("email", user.getEmail())
+                .bind("clientId", user.getClientId())
+                .bind("password", user.getPassword())
+                .bind("active", user.getActive())
+                .bind("createdAt", user.getCreatedAt())
+                .bind("updatedAt", user.getUpdatedAt())
+                .executeAndReturnGeneratedKeys("id")
+                .mapTo(Long.class)
+                .one();
+
+            return find(userId);
+        });
     }
 }

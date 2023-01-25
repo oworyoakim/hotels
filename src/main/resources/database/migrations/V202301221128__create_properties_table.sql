@@ -13,7 +13,7 @@ CREATE TABLE properties
     address         varchar(255)   NOT NULL,
     country         varchar(255)   NOT NULL,
     city            varchar(255)   NOT NULL,
-    zip             varchar(255)   NOT NULL,
+    zip             varchar(255)   DEFAULT NULL,
     published       boolean                 DEFAULT false,
     createdAt       timestamp,
     updatedAt       timestamp,
