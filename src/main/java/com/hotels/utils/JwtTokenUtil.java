@@ -14,20 +14,11 @@ public class JwtTokenUtil {
 
         return Jwt.upn(user.getEmail())
                 .claim("userId", user.getId())
+                .claim("clientId", user.getClientId())
                 .issuer(issuer)
                 .subject(user.getEmail())
                 .issuedAt(currentTimeInSecs)
                 .expiresAt(expiresAt)
                 .sign();
-    }
-
-    public static Long getUserId(JsonWebToken token) {
-        Long sessionUserId = null;
-        try {
-            sessionUserId = Long.valueOf(token.getClaim("userId").toString());
-        } catch (Exception e) {
-            log.error("Error getting userId claim from Token.", e);
-        }
-        return sessionUserId;
     }
 }

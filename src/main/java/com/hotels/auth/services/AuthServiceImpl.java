@@ -24,8 +24,6 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
     private final UserService userService;
 
-    private final DatabaseConnection connection;
-
     public static final String ACCOUNT_BLOCKED_MESSAGE = "Sorry, your account has been blocked by admin";
     public static final String INVALID_CREDENTIALS_MESSAGE = "Sorry, your credentials are not valid";
     public static final String LOGIN_SUCCESSFUL_MESSAGE = "Success";
@@ -112,8 +110,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ProfileResponse loggedInUser(JsonWebToken token) {
-        Long userId = Long.valueOf(token.getClaim("userId").toString());
-        Optional<User> optionalUser = userService.find(userId);
+        String email = token.getName();
+        Optional<User> optionalUser = userService.findByEmailAddress(email);
 
         if(optionalUser.isEmpty()) {
             return null;

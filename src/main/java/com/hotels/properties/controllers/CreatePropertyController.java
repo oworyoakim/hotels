@@ -34,7 +34,7 @@ public class CreatePropertyController {
     private final AuthService authService;
     @POST
     public Response store(@Valid CreatePropertyRequest request) {
-        ProfileResponse loggedInUser = authService.loggedInUser(token);
+        var loggedInUser = authService.loggedInUser(token);
 
         Property property = Property.builder()
             .propertyType(PropertyType.valueOf(request.getPropertyType()))

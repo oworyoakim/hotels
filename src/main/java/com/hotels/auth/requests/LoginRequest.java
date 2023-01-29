@@ -2,6 +2,8 @@ package com.hotels.auth.requests;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data

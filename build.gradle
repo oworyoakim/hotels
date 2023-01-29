@@ -37,6 +37,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-security-jpa'
     // testing
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+    testImplementation 'io.quarkus:quarkus-test-security-jwt'
     testImplementation 'io.rest-assured:rest-assured'
 }
 
