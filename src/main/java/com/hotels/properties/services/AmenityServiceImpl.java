@@ -1,15 +1,11 @@
 package com.hotels.properties.services;
 
+import java.util.List;
 import java.util.Optional;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
 import com.hotels.db.DatabaseConnection;
 import com.hotels.properties.enumerations.AmenityType;
-import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Amenity;
-import com.hotels.properties.models.Property;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 
@@ -27,7 +23,7 @@ public class AmenityServiceImpl implements AmenityService {
             createdAt,
             updatedAt
         FROM
-            amenities am
+            amenities
         """;
     @Override
     public Optional<Amenity> create(Amenity amenity) {
@@ -60,8 +56,16 @@ public class AmenityServiceImpl implements AmenityService {
     }
 
     @Override
+    public List<Amenity> findAll() {
+        return connection.getConnection().withHandle(handle ->
+            handle.createQuery(SELECT_AMENITY)
+                .map(amenityRowMapper())
+                .list());
+    }
+
+    @Override
     public Optional<Amenity> find(Long id) {
-        return connection.getConnection().withHandle(handle -> handle.createQuery(SELECT_AMENITY + " WHERE am.id = :id")
+        return connection.getConnection().withHandle(handle -> handle.createQuery(SELECT_AMENITY + " WHERE id = :id")
             .bind("id", id)
             .map(amenityRowMapper())
             .findFirst());
