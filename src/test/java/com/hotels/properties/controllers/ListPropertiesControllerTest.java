@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Property;
 import com.hotels.properties.services.PropertyService;
+import com.hotels.users.services.UserService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import io.quarkus.test.security.TestSecurity;
@@ -24,7 +25,7 @@ class ListPropertiesControllerTest {
     @InjectMock
     PropertyService propertyService;
     @Test
-    @TestSecurity(user = "test2@hotels.test")
+    @TestSecurity(user = UserService.TEST_EMAIL)
     void index() {
         Property property = Property.builder()
             .id(1L)

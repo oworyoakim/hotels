@@ -10,6 +10,7 @@ import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Property;
 import com.hotels.properties.requests.CreatePropertyRequest;
 import com.hotels.properties.services.PropertyService;
+import com.hotels.users.services.UserService;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import io.quarkus.test.security.TestSecurity;
@@ -27,7 +28,7 @@ class CreatePropertyControllerTest {
     @InjectMock
     PropertyService propertyService;
     @Test
-    @TestSecurity(user = "test@hotels.test")
+    @TestSecurity(user = UserService.TEST_EMAIL)
     void store() {
         CreatePropertyRequest request = new CreatePropertyRequest();
         request.setName("Test Property");

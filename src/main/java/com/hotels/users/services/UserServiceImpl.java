@@ -3,13 +3,13 @@ package com.hotels.users.services;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.users.models.User;
 import com.hotels.users.enumerations.UserType;
-import io.quarkus.elytron.security.common.BcryptUtil;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Random;
 
 
 @AllArgsConstructor
@@ -106,5 +106,20 @@ public class UserServiceImpl implements UserService {
 
             return find(userId);
         });
+    }
+
+    public String generatePassword() {
+        return this.generatePassword(10);
+    }
+
+    public String generatePassword(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
+        Random random = new Random();
+        StringBuilder password = new StringBuilder();
+        for (int i = 0; i < length; i++)
+        {
+            password.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        return new String(password);
     }
 }

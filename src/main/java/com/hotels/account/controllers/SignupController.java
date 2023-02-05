@@ -3,7 +3,7 @@ package com.hotels.account.controllers;
 import com.hotels.account.enumerations.AccountType;
 import com.hotels.account.models.Client;
 import com.hotels.account.requests.SignupRequest;
-import com.hotels.account.services.SignupService;
+import com.hotels.account.services.AccountService;
 import lombok.AllArgsConstructor;
 
 import javax.enterprise.context.RequestScoped;
@@ -24,7 +24,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SignupController {
 
-    private final SignupService signupService;
+    private final AccountService accountService;
     @POST
     public Response signup(@Valid SignupRequest request) throws Exception {
         Client client = Client.builder()
@@ -41,7 +41,7 @@ public class SignupController {
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
-        Optional<Client> optionalClient = signupService.createAccount(client);
+        Optional<Client> optionalClient = accountService.createAccount(client);
         if(optionalClient.isEmpty()) {
             throw new Exception("Failed to create account");
         }

@@ -8,7 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import com.hotels.db.DatabaseConnection;
 import com.hotels.properties.enumerations.PropertyType;
 import com.hotels.properties.models.Property;
-import com.hotels.users.enumerations.UserType;
 import lombok.AllArgsConstructor;
 import org.jdbi.v3.core.mapper.RowMapper;
 

@@ -2,8 +2,6 @@ package com.hotels.account.controllers;
 
 import com.hotels.auth.models.ProfileResponse;
 import com.hotels.auth.services.AuthService;
-import com.hotels.users.models.User;
-import com.hotels.users.services.UserService;
 import lombok.AllArgsConstructor;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
@@ -13,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Optional;
 
 
 @AllArgsConstructor
